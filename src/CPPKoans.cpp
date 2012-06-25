@@ -20,6 +20,7 @@
 #include "AboutAssert.h"
 #include "AboutBitwiseOperators.h"
 #include "AboutUserDefinedTypes.h"
+#include "AboutCopyConstructor.h"
 using namespace std;
 
 /**
@@ -46,6 +47,7 @@ int main() {
 		AboutBitwiseOperators::meditate();
 		AboutUserDefinedTypes::meditate();
 		AboutVectors::meditate();
+		AboutCopyConstructor::meditate();
 
 	} catch (const StopMeditating &e) {
 		cout << "catched StopMeditating." << endl;

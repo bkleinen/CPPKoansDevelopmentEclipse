@@ -46,6 +46,7 @@ void aboutMethodPolymorphism() {
 
 	expectThat("direct method call to a", 'a', a.method0());
 	expectThat("b inherits method0 from a", 'a', b.method0());
+
 	expectThat("direct method call to a", 'a', a.method1());
 	expectThat("b overwrites method1", 'b', b.method1());
 	expectThat("unless declared as virtual, methods are statically bound",
