@@ -31,7 +31,7 @@ void aboutThrowingSomething() {
 		int area1 = area(4, 2);
 	} catch (Bad_area &e) {
 		result = 1;
-	} catch (...) { // fängt alles andere
+	} catch (...) { // catches everything else
 		result = 2;
 	}
 

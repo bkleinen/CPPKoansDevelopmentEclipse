@@ -76,8 +76,39 @@ describe "replace" do
     it "-- string" do
       @rep.replace_expected("\"big bang theory\"").should == "_______"
     end
-    
-     
+    it "define __________ vector<char>" do
+      @rep.replace_expected("actualCharVector").should == "__________"
+    end
+    it "define copy vector<char>" do
+      @rep.replace_expected("copy").should == "copy"
+    end
+  end
+  describe "real data problems" do
+    it "replaces vectors" do
+      l = %(expectThat("v hasn't changed",actualCharVector,v);)
+      r = %(expectThat("v hasn't changed",__________,v);)
+      @rep.replace_line(l).should == r
+      	
+    end
+    it "leaves unknown variables alone" do
+      l = %(expectThat("v hasn't changed",copy,v);)
+      r = %(expectThat("v hasn't changed",copy,v);)
+      @rep.replace_line(l).should == r
+      	
+    end
+  end
+  describe "regex" do
+    it "??" do
+       l = %(expectThat("v hasn't changed",copy,v);)
+       m = @rep.regex.match(l)
+       m.should_not be_nil
+       m[1].should_not be_nil
+       m[1].should == "expectThat(\"v hasn't changed\","
+       m[2].should_not be_nil
+       m[2].should == "copy"
+       m[3].should_not be_nil
+       m[3].should == ",v);"
+    end
   end
   
 end  

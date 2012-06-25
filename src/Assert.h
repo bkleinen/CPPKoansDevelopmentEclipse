@@ -13,6 +13,7 @@
 #define _______  "42"
 #define ________  false
 #define _________  true
+#define __________ vector<char>
 
 #include <string>
 #include <iostream>

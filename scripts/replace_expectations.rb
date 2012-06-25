@@ -9,17 +9,7 @@ require File.join(dirname,'./replacer')
 sourcedirname = "src"
 targetdir = "koans"
 
-puts "WARNING - this will modify the actual source files!"
-puts "if you want to continue type 'yes'"
-confirmation = gets 
-confirmation.strip!
-confirmation = "yes"
-if ("yes" == confirmation)
-  puts "OK...."
-  r = Replacer.new
-  r.doit File.join(File.dirname(File.realpath(__FILE__)),'..'),sourcedirname,targetdir
- else 
-  puts "not doing anything"
-end
+r = Replacer.new
+r.doit File.join(File.dirname(File.realpath(__FILE__)),'..'),sourcedirname,targetdir
 
 

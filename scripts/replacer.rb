@@ -1,4 +1,6 @@
 
+$DEBUG = false
+
 class Replacer
   @@typehash = {
       'char' => "____",
@@ -8,6 +10,9 @@ class Replacer
       
    @@regex = /^(\s*expectThat\("[^"]*",\s*)([^,]*)(,.*\);\s*)$/
    @@c_style_cast = /^\s*(\w+\()(.*)(\))\s*$/
+  def regex
+    @@regex
+  end
   def dosomething
     "hallo"
   end
@@ -26,7 +31,7 @@ class Replacer
       File.open(newfilename,'w') do | f2 |
         File.open(file,'r') do | f |
           f.each_line do | content |
-            newcontent = replace_line(content)
+            newcontent = replace_line(content,file)
             f2.puts(newcontent)
           end
         end
@@ -35,7 +40,8 @@ class Replacer
       #File.rename(newfilename,file)
     end
   end
-  def replace_line(line)
+  def replace_line(line,fn = "")
+    puts fn+":"+line if $DEBUG
     m = @@regex.match(line)
     unless m
       return line
@@ -60,7 +66,10 @@ class Replacer
       end
     end
   
+    puts "###### expectedValue #{expected_value}" if $DEBUG
     case expected_value
+    when /actualCharVector/
+      return cast + "__________" + tail
     when /true/
       return cast + "________" + tail
     when /false/
@@ -75,10 +84,9 @@ class Replacer
       return cast + @@typehash['string'] + tail
     when /'\w'/
       return cast + @@typehash['char'] + tail
-    default
-      return cast + expected_value + tail 
     end
-    
+    return cast + expected_value + tail 
+   
   end
 end
 
