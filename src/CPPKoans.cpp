@@ -45,11 +45,11 @@ int main() {
 		AboutAssert::meditate();
 		AboutBitwiseOperators::meditate();
 		AboutUserDefinedTypes::meditate();
+		AboutVectors::meditate();
 
 	} catch (const StopMeditating &e) {
 		cout << "catched StopMeditating." << endl;
 	}
-//	AboutVectors::meditate();
 //	AboutStdInAndOut::meditate();
 }
 

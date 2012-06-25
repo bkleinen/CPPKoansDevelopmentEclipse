@@ -18,6 +18,7 @@
 #include <string>
 #include <iostream>
 #include <typeinfo>
+#include <vector>
 
 #include "StopMeditating.h"
 using namespace std;
@@ -34,6 +35,10 @@ void expectThatNotRaw (string message, T expected, T actual) {
 		reportUnmetExpectation(message,expected,actual);
 }
 
+template <class T>
+void expectThat (string where, string message, T expected, T actual) {
+	expectThatRaw(where + ": "+message,expected,actual);
+}
 template <class T>
 void expectThat (string message, T expected, T actual) {
 	expectThatRaw(message,expected,actual);
@@ -65,5 +70,28 @@ void reportUnmetExpectation(string message, T expected, T actual){
 		if (QUIT_ON_UNMET_EXPECTATION)
 			throw StopMeditating();
 }
+template <class E>
+void reportUnmetExpectation(string message, vector<E> expected, vector<E> actual){
+		cout << "Expectation Failed: " << message << endl;
+		cout << "Expected: " ;
+		coutVector(expected);
 
+		cout <<  ", but was: " << endl;
+		coutVector(actual);
+		cout  << endl;
+		if (QUIT_ON_UNMET_EXPECTATION)
+			throw StopMeditating();
+}
+
+template <class E>
+void coutVector(vector<E> v){
+	cout << "[";
+	string delim = "";
+	for(unsigned int i = 0;i<v.size();++i){
+    		cout << delim;
+			cout << v[i];
+			delim = ", ";
+		}
+	cout << "]";
+}
 #endif /* ASSERT_H_ */

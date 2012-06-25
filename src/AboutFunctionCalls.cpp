@@ -7,6 +7,8 @@
 #include "stdafx.h"
 #include "AboutFunctionCalls.h"
 #include "Assert.h"
+#include <vector>
+#define W "About Function Calls"
 
 // aboutCallByValue
 void someFunction1(int x, int y) {
@@ -59,7 +61,7 @@ void aboutConstCallByReference() {
 	f1(myList);
 	expectThat("myList has been changed", 5, myList.i);
 	f2(myList);
-	expectThat("myList has been changed", 5, myList.i);
+	expectThat("myList has been changed 2", 5, myList.i);
 }
 
 //about changing parameters in CBV
@@ -81,6 +83,11 @@ void fa(char a[]) {
 	a[1] = 'u';
 	a[4] = 'u';
 }
+vector<char> fav(vector<char> a) {
+	a[1] = 'u';
+	a[4] = 'u';
+	return a;
+}
 
 void aboutArraysBeingAlwaysPassedByReference() {
 	char s1[] = "hallo";
@@ -88,10 +95,24 @@ void aboutArraysBeingAlwaysPassedByReference() {
 	expectThat("s1 has changed to...", 0, strcmp("hullu", s1));
 }
 
+void aboutUsingVectorsInsteadOfArrays(){
+	vector<char> v(6) ;
+	char s[] = "Hallo";
+	for (int i = 0;i<6;i++)
+		v[i] = s[i];
+	vector<char> copy = v;
+	vector<char> formalParameter = fav(v);
+	expectThat(W,"s has not changed", 0, strcmp("Hallo", s));
+	expectThat("v hasn't changed",copy,v);
+	expectThatNot("but the vector inside the function is different",copy,formalParameter);
+}
+
+
 void AboutFunctionCalls::meditate() {
 	aboutCallByValue();
 	aboutCallByReference();
 	aboutConstCallByReference();
 	aboutChangingParametersInCBV();
 	aboutArraysBeingAlwaysPassedByReference();
+	aboutUsingVectorsInsteadOfArrays();
 }

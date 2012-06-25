@@ -10,7 +10,6 @@
 
 class AboutVectors {
 public:
-	AboutVectors();
 	static void meditate();
 };
 
