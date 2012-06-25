@@ -42,16 +42,13 @@ void aboutListPlain() {
 void aboutCopyingListPlain() {
 	ListPlain secondElement(2);
 	ListPlain firstElement(1,&secondElement);
-
-	ListPlain * list = new ListPlain(2);
-	list = new ListPlain(1, list);
-	expectThat("check on length", 2, list->countElements());
+	expectThat("check on length", 2, firstElement.countElements());
 	// this results in a shallow copy.
-	ListPlain list2 = *list;
-	list2.i = 3;
-	expectThat("first element of list has not changed", 1, list->i);
-	list2.next->i = 47;
-	expectThat("the second element should also stay the same",2,6);
+	ListPlain copy = firstElement;
+		copy.i = 3;
+	expectThat("first element of list has not changed", 1, firstElement.i);
+	copy.next->i = 47;
+	expectThat("go on here",2,6);
 }
 
 class List {
