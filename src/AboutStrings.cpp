@@ -90,10 +90,20 @@ void aboutTheConcatenationPitfall(){
 	// however: "a "+"cat"; won't compile - they are both c-strings
 	expectThatNot("this will compile, but not result in the expected",string("a c"),string("a "+'c'));
 	
-	char* s2 = "a123456789b123456789c";
+	char s2[] = "a123456789b123456789c";
 	expectThat("in fact, it's a pointer manipulation II",string("6789c"),string(s2+16));
 	expectThat("and this is the concatenation pitfall",0,strcmp("b123456789c","a123456789b123456789c"+10));
 	
+}
+void aboutStringExample(){
+	string color;
+	char hue[] = {'R','e','d','\0'};
+	color = hue;
+	string text = "9";
+	string term =("9 ");
+	string info(" Balloons");
+	text += term+color+info;
+	expectThat("string example from class","99 Red Balloons",text);
 }
 
 void AboutStrings::meditate() {
@@ -104,6 +114,7 @@ void AboutStrings::meditate() {
 	aboutStringsAsParametersBeingCopied();
 	aboutPassingAsReferenceMutatesTheOriginalString();
 	aboutTheConcatenationPitfall();
+	aboutStringExample();
 
 }
 
