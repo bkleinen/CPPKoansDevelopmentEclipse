@@ -10,7 +10,7 @@
 *.lai
 *.la
 *.a
-
+koans/*
 Debug/*
 .project
 .cproject
