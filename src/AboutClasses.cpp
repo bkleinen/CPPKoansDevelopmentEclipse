@@ -39,7 +39,7 @@ public:
 	}
 };
 
-void aboutMemberPolymorphism() {
+void aboutMethodPolymorphism() {
 	A a;
 	B b;
 	A c = b;
@@ -55,6 +55,6 @@ void aboutMemberPolymorphism() {
 
 }
 void AboutClasses::meditate() {
-	aboutMemberPolymorphism();
+	aboutMethodPolymorphism();
 }
 

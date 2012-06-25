@@ -21,7 +21,7 @@ void aboutCStrings(){
 	char *x = aString;
 	// and sizeof determines the size of the pointer!
 	int pointerSize = sizeof(x);
-	expectThat("the size of a pointer",4,pointerSize);
+	expectThat("the size of a pointer",8,pointerSize);
 
 	// arrays in c don't store their length.
 	// there is a method in cstring which determines it for strings looking for the terminating char.
@@ -92,6 +92,7 @@ void aboutTheConcatenationPitfall(){
 	
 	char* s2 = "a123456789b123456789c";
 	expectThat("in fact, it's a pointer manipulation II",string("6789c"),string(s2+16));
+	expectThat("and this is the concatenation pitfall",0,strcmp("b123456789c","a123456789b123456789c"+10));
 	
 }
 

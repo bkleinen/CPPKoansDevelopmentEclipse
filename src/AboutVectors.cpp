@@ -8,6 +8,8 @@
 #include <vector>
 
 #include "AboutVectors.h"
+#include "Assert.h"
+
 using namespace std;
 
 AboutVectors::AboutVectors() {
