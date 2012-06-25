@@ -70,6 +70,13 @@ describe "replace" do
     it "-- string with c style cast + spaces" do
       @rep.replace_expected("string(\"hallo du da\")").should == "string(_______)"
     end
+    it "-- string with c style cast + spaces" do
+      @rep.replace_expected("string(\"hallo du da\")").should == "string(_______)"
+    end
+    it "99 Red Balloons" do
+      @rep.replace_expected("\"99 Red Balloons\"").should == "_______"
+    end
+    
     it "-- double" do
       @rep.replace_expected("42.42").should == "______"
     end
@@ -82,6 +89,7 @@ describe "replace" do
     it "define copy vector<char>" do
       @rep.replace_expected("copy").should == "copy"
     end
+    
   end
   describe "real data problems" do
     it "replaces vectors" do

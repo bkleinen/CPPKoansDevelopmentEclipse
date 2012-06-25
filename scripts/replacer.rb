@@ -76,12 +76,12 @@ class Replacer
       return cast + "_________" + tail
     when /_+/
       return expected_value
+    when /".*"/
+      return cast + @@typehash['string'] + tail
     when /\d+\.\d+/
       return cast + @@typehash['double'] + tail
     when /\d+/
       return cast + @@typehash['int'] + tail
-    when /".*"/
-      return cast + @@typehash['string'] + tail
     when /'\w'/
       return cast + @@typehash['char'] + tail
     end
