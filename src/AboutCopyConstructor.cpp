@@ -49,8 +49,9 @@ void aboutCopyingListPlain() {
 	// this results in a shallow copy.
 	ListPlain list2 = *list;
 	list2.i = 3;
-	expectThat("go on here...", 2, 3);
-
+	expectThat("first element of list has not changed", 1, list->i);
+	list2.next->i = 47;
+	expectThat("the second element should also stay the same",2,6);
 }
 
 class List {
