@@ -51,7 +51,7 @@ void aboutCopyingListPlain() {
 	expectThat("go on here",2,6);
 }
 
-class List {
+class List : public ListPlain{
 public:
 	List(int x) :
 			i(x) {
